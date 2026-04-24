@@ -18,7 +18,7 @@ export default function Index() {
           style={styles.logo} 
         />
         
-        <TouchableOpacity onPress={() => router.navigate("/add")}>
+        <TouchableOpacity onPress={() => router.navigate("./add")}>
         <MaterialIcons name="add" size={32} color={colors.green[300]} />
         </TouchableOpacity>
       </View>
