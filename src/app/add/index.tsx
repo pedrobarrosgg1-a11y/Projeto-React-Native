@@ -6,7 +6,6 @@ import { router } from "expo-router"
 import { styles } from "./styles"
 import { colors } from "@/styles/colors"
 
-import { categories } from "@/utils/categories"
 import { Categories } from "@/components/categories"
 import { Input } from "@/components/input"
 import { Button } from "@/components/button"

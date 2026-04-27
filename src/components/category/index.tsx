@@ -11,13 +11,16 @@ type Props = PressableProps & {
 }
 
 export function Category({ name, icon, isSelected, ...rest }: Props) {
+  // ✅ A cor muda dependendo se está selecionado ou não
   const color = isSelected ? colors.green[300] : colors.gray[400]
+
   return (
     <Pressable style={styles.container} {...rest}>
+      {/* ✅ Agora o ícone usa a variável `color`, não mais hardcoded */}
       <MaterialIcons 
         name={icon}
         size={16} 
-        color={colors.gray[400]} 
+        color={color}  // 👈 aqui estava o erro!
       />
       <Text style={[styles.name, { color }]}>{name}</Text>
     </Pressable>
