@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { useState, useEffect } from "react"
 
 import { colors } from "@/styles/colors";
 

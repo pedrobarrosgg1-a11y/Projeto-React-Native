@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { View, Text, TouchableOpacity, Alert } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
 import { router } from "expo-router"
 
-import { styles } from "./styles"
+import { styles } from "../../screens/add/_styles"
 import { colors } from "@/styles/colors"
 import { LinkStorage } from "@/storage/link-storage"
 
@@ -13,8 +13,8 @@ import { Button } from "@/components/button"
 
 export default function Add() {
     const [category, setCategory] = useState("")
-    const [ name, setName] = useState<string>()
-    const [url, setUrl] =useState<string>()
+    const [ name, setName] = useState("")
+    const [url, setUrl] =useState("")
 
     async function handleAdd(){
         try {
@@ -38,9 +38,12 @@ export default function Add() {
             category,
         })
 
-        const data = await LinkStorage.get()
-        console.log(data)
-
+        Alert.alert("Sucesso", "Novo link adicionado,", [
+            { 
+                text: "Ok", 
+                onPress: () => router.back() 
+            },
+        ])
     } catch (error){
         Alert.alert("Erro", "Não foi possível salvar o link")
         console.log(error)
