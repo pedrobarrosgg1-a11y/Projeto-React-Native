@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState, useEffect } from "react";
 
 const LINKS_STORAGE_KEY = "Links-storage"
 
@@ -29,4 +28,16 @@ async function save(newLink: LinkStorages) {
     }
 }
 
-export const LinkStorage = { get, save }
+async function remove(id: string) {
+    try {
+        const storage = await get()
+
+        const updated = storage.filter((link) => link.id !== id)
+
+        await AsyncStorage.setItem(LINKS_STORAGE_KEY, JSON.stringify(updated))
+    } catch (error) {
+        throw error
+    }
+}
+
+export const LinkStorage = { get, save, remove }

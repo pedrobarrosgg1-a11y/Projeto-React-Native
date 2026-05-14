@@ -7,14 +7,14 @@ import { Category } from "@/components/category"
 
 type CategoriesProps = {
   selected?: string
-  onChange?: (id: string) => void
+  onChange?: (name: string) => void
 }
 
 export function Categories({ selected = "", onChange }: CategoriesProps = {}) {
-  const [internalSelected, setInternalSelected] = useState("1")
+  const [internalSelected, setInternalSelected] = useState(categories[0].name)
   const controlled = onChange != null
-  const selectedId = controlled ? selected : internalSelected
-  const setSelectedId = controlled ? onChange : setInternalSelected
+  const selectedName = controlled ? selected : internalSelected
+  const setSelectedName = controlled ? onChange : setInternalSelected
 
   return (
     <FlatList
@@ -24,8 +24,8 @@ export function Categories({ selected = "", onChange }: CategoriesProps = {}) {
         <Category
           name={item.name}
           icon={item.icon}
-          isSelected={selectedId === item.id}
-          onPress={() => setSelectedId(item.id)}
+          isSelected={selectedName === item.name}
+          onPress={() => setSelectedName(item.name)}
         />
       )}
       horizontal

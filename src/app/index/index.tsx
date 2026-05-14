@@ -9,7 +9,7 @@ import { colors } from "@/styles/colors"
 
 // 2️⃣ Importar o LinkStorage para buscar os links salvos
 import { LinkStorage, LinkStorages } from "@/storage/link-storage"
-import { categories } from "@/utils/categories"
+import { categories, getCategoryLabel, linkMatchesSelectedCategory } from "@/utils/categories"
 
 import { Link } from "@/components/link"
 import { Option } from "@/components/option"
@@ -26,7 +26,9 @@ export default function Index() {
     try {
       const response = await LinkStorage.get()
 
-      const filtered = response.filter((link) => link.category === category)
+      const filtered = response.filter((link) =>
+        linkMatchesSelectedCategory(link.category, category),
+      )
 
       setLinks(filtered)
     } catch (error){
@@ -37,6 +39,24 @@ export default function Index() {
   function handleDetails(selected: LinkStorages) {
     setShowModal(true)
     setLink(selected)
+  }
+
+  async function linkRemove(){
+    try {
+      await LinkStorage.remove(link.id)
+      getLinks()
+      setShowModal(false)
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível excluir")
+      console.log(error)
+    }
+  }
+
+   function handleRemove() {
+      Alert.alert("Excluir", "Deseja realmente excluir?", [
+        {style: "cancel", text: "Não"},
+        { text: "Sim", onPress: linkRemove}
+      ]) 
   }
   
   useFocusEffect(useCallback(() => {
@@ -80,7 +100,7 @@ export default function Index() {
         <View style={styles.modal}>
           <View style={styles.modalContent}>
             <View style={styles.modalHeader}>
-              <Text style={styles.modalCategory}>{link.category}</Text>
+              <Text style={styles.modalCategory}>{getCategoryLabel(link.category)}</Text>
               
               <TouchableOpacity onPress={() => setShowModal(false)}>
                 <MaterialIcons name="close" size={20} color={colors.gray[400]} />
@@ -89,7 +109,7 @@ export default function Index() {
             <Text style={styles.modalLinkName}>{link.name}</Text>
             <Text style={styles.modalUrl}>{link.url}</Text>
             <View style={styles.modalFooter}>
-              <Option name="Excluir" icon="delete" variant="secondary" />
+              <Option name="Excluir" icon="delete" variant="secondary" onPress={handleRemove}/>
               <Option name="Abrir" icon="language" />
             </View>
           </View>
