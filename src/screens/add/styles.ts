@@ -1,78 +1,86 @@
+/**
+ * Estilos da tela inicial (lista de links + modal).
+ *
+ * Reutilizado em `src/app/index/index.tsx`.
+ * Nome do arquivo histórico: veio da organização inicial do projeto em `screens/`.
+ */
+
 import { StyleSheet } from "react-native";
-import { useState, useEffect } from "react"
 
 import { colors } from "@/styles/colors";
 
 export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 62,
-    },
+  container: {
+    flex: 1, // ocupa toda a altura da tela
+    paddingTop: 62, // espaço para status bar / área segura
+  },
 
-    title: {
-        color: colors.green[900],
-        fontSize: 22,
-    },
+  title: {
+    color: colors.green[900],
+    fontSize: 22,
+  },
 
-    header: {
-        paddingHorizontal: 24,
-        width: "100%",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: 32,
-    },
-    logo: {
-        height: 32,
-        width: 38,
-    },
-    links: {
-        borderTopWidth: 1,
-        borderTopColor: colors.gray[600]
-    },
-    linksContent: {
-        gap: 20,
-        padding: 24,
-        paddingBottom: 100,
-    },
-    modal: {
-        flex: 1,
-        justifyContent: "flex-end"
-    },
-    modalContent: {
-        backgroundColor: colors.gray[900],
-        borderTopWidth: 1,
-        borderTopColor: colors.gray[400],
-        paddingBottom: 42,
-        padding: 24,
-    },
-    modalHeader: {
-        width: "100%",
-        flexDirection: "row",
-        alignItems: "center",
-        marginBottom: 32
-    },
-    modalCategory: {
-        flex: 1,
-        fontSize: 16,
-        fontWeight: "500",
-        color: colors.gray[400]
-    },
-    modalLinkName: {
-        fontSize: 18,
-        fontWeight: "600",
-        color: colors.gray[200]
-    },
-    modalUrl: {
-        color: colors.gray[400],
-    },
-    modalFooter :{
-        flexDirection: "row",
-        marginTop: 32,
-        width: "100%",
-        justifyContent: "space-between",
-        borderTopWidth: 1,
-        borderTopColor: colors.gray[600],
-        paddingVertical: 14,
-    }
-})
+  header: {
+    paddingHorizontal: 24,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 32,
+  },
+  logo: {
+    height: 32,
+    width: 38,
+  },
+  links: {
+    borderTopWidth: 1,
+    borderTopColor: colors.gray[600],
+  },
+  linksContent: {
+    gap: 20,
+    padding: 24,
+    paddingBottom: 100, // espaço extra no fim da lista ao rolar
+  },
+
+  // Modal que sobe da parte inferior da tela
+  modal: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
+  modalContent: {
+    backgroundColor: colors.gray[900],
+    borderTopWidth: 1,
+    borderTopColor: colors.gray[400],
+    paddingBottom: 42,
+    padding: 24,
+  },
+  modalHeader: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 32,
+  },
+  modalCategory: {
+    flex: 1,
+    fontSize: 16,
+    fontWeight: "500",
+    color: colors.gray[400],
+  },
+  modalLinkName: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: colors.gray[200],
+  },
+  modalUrl: {
+    color: colors.gray[400],
+  },
+  modalFooter: {
+    flexDirection: "row",
+    marginTop: 32,
+    width: "100%",
+    justifyContent: "space-between",
+    borderTopWidth: 1,
+    borderTopColor: colors.gray[600],
+    paddingVertical: 14,
+  },
+});
